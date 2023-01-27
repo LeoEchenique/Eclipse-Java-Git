@@ -10,7 +10,7 @@ public class WelcomeClass {
 		System.out.println("Hello wordl!");
 		System.out.println("Hello!");
 		
-		String name= "leo";
+	
 		String[] nombres= {"maria", "Ernesto", "Nahuel", "Lucia"};	
 		for (int i = 0; i < nombres.length; i++) {
 		  System.out.println(nombres[i]);
