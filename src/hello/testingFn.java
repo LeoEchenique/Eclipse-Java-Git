@@ -22,7 +22,5 @@ public class testingFn {
 		scanner.close();
 		System.out.print("you've typed " + showResult);
 		
-		
-		
 	}
 }
