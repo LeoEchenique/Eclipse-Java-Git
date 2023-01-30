@@ -34,6 +34,7 @@ public class WelcomeClass {
 	public static void holaNombre(String nombre) {
 		System.out.println("Hola " + nombre);
 	}
+	 
 	
 	protected void holaClase() {
 		System.out.println("un hola protegido");
