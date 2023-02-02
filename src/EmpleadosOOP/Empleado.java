@@ -28,8 +28,8 @@ public class Empleado {
 	}
 
 	public String getSueldo() {
-		int currentSalary= sueldo;
-		return Double.toString(currentSalary);
+		
+		return Integer.toString(sueldo);
 	}
 
 	// setters

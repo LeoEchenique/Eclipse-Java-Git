@@ -22,7 +22,7 @@ public class Use_Empleado {
 		}
 		
 		scanner.close();
-		
+		System.out.println("Cascade execution, fullList below!");
 		for(Empleado e: empleados) {
 			System.out.println(e.getInfo());
 		}
