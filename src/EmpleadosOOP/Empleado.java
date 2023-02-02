@@ -1,6 +1,4 @@
 package EmpleadosOOP;
-
-import java.util.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -22,10 +20,6 @@ public class Empleado {
 		this.altaContrato= formattedDate;
 		ID= nextId;
 		nextId++;
-	//	GregorianCalendar alta = new GregorianCalendar(anio, mes, dia);
-	//	this.altaContrato = alta.getTime();
-		
-		
 	}
 
 	// getters
@@ -43,7 +37,6 @@ public class Empleado {
 	}
 
 	// setters
-
 	public String aumentarSueldo(double porcentaje) {
 		
 		double aumento = sueldo * porcentaje / 100;
