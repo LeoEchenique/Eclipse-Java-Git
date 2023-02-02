@@ -22,10 +22,12 @@ public class Use_Empleado {
 		}
 		
 		scanner.close();
-		System.out.println("Cascade execution, fullList below!");
+		System.out.println( "\n Cascade execution, fullList below! \n");
 		for(Empleado e: empleados) {
 			System.out.println(e.getInfo());
 		}
+		
+		System.out.println(Empleado.getStaticProp()); // static method, in cursive, gets the static prop of the nextId that will be generate for a employee.
 	}
 
 }
