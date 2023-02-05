@@ -23,7 +23,8 @@ public class Personal extends Empleado{ // Herencia, hereda las props de Emplead
 	
 	//setter
 	public String aumentarSueldo(int giveMoney) {  // aumentarSueldo sobreescribió al método aumentarSueldo heredado de la clase Empleado
-		String sueldo= getSueldo(); 		// acá utiliza el getSueldo() de la clase padre (Empleado)
+		String sueldo= super.getSueldo(); 		// acá utiliza el getSueldo() de la clase padre (Empleado) 
+								//!! si sacas super hace implicito el uso de getSueldo del método del padre pero capaz confunde.
 		
 		// pudo haberse llamado diferente la fn y no se hace un override del método pero bueno, ahorra y tiene sentido.
 		
