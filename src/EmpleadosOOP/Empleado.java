@@ -39,7 +39,7 @@ public class Empleado {
 	}
 
 	public String getSueldo() {
-		System.out.println("exec");
+		
 		return Integer.toString(sueldo);
 	}
 	
