@@ -10,10 +10,10 @@ public class Empleado {
 	private final int ID;
 	private static int nextId= 1;
 	
-	public Empleado(String nombre, double sueldo, int dia, int mes, int anio) {
+	public Empleado(String nombre, int sueldo, int dia, int mes, int anio) {
 
 		this.nombre = nombre;
-		this.sueldo = (int) sueldo;
+		this.sueldo =  sueldo;
 		LocalDate date = LocalDate.of(anio,mes,dia);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String formattedDate = date.format(formatter);
@@ -25,8 +25,8 @@ public class Empleado {
 	public Empleado(String nombre){
 //		this(nombre, 500, 1, 1, 2023);  es equivalente a lo que esta abajo:
 	
-		this.nombre= nombre;
-	sueldo= 10000;
+	this.nombre= nombre;
+	sueldo= 10;
 	altaContrato= "01/01/2023";
 	ID= nextId;
 	nextId++;
@@ -38,9 +38,9 @@ public class Empleado {
 		return "Name: " + nombre + " Sueldo: " + sueldo + " Alta de contrato: " + altaContrato + " Id: " + ID;
 	}
 
-	public String getSueldo() {
+	public int getSueldo() {
 		
-		return Integer.toString(sueldo);
+		return sueldo;
 	}
 	
 	public static int getStaticProp() {
