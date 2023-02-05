@@ -24,12 +24,15 @@ public class Empleado {
 
 	public Empleado(String nombre){
 //		this(nombre, 500, 1, 1, 2023);  es equivalente a lo que esta abajo:
-	this.nombre= nombre;
+	
+		this.nombre= nombre;
 	sueldo= 10000;
 	altaContrato= "01/01/2023";
 	ID= nextId;
 	nextId++;
 	}
+
+	
 	// getters
 	public String getInfo() {
 		return "Name: " + nombre + " Sueldo: " + sueldo + " Alta de contrato: " + altaContrato + " Id: " + ID;
