@@ -8,7 +8,7 @@ public class Use_Empleado {
 	public static void main(String[] args) {
 
 		Empleado[] empleados = { new Empleado("leo", 10, 18, 02, 2023), new Empleado("juan", 97000, 20, 04, 2021),
-				new Empleado("mario", 165000, 1, 05, 2020) };
+				new Empleado("mario", 165000, 1, 05, 2020), new Jefe("leito") };
 		
 		
 		///////////////////////////////////////////////////////  Program basic, handle instance in a for iteration
@@ -40,10 +40,11 @@ public class Use_Empleado {
 		// Substutle principle.
 		//same as:
 		polimorphEmpleados[empleados.length] = new Personal("Manuel", "music", 10, "nice guy"); // polimorphEmpleados has a type of Empleado[] the parent class of Personal
-
-	//	for (Empleado e : polimorphEmpleados) {	
+		
+		for (Empleado e : polimorphEmpleados) {	
 	//		System.out.println(e.getInfo());			// polymorphism, MANUEL is define as Personal class, but inherits the class of Empleado so is allowed to be in the array of type Empleado
-	//	}
+		//	System.out.println(e.getClass());
+		}
 		
 		
 		
@@ -71,7 +72,7 @@ public class Use_Empleado {
 		
 	
 		////////////////////////////////////////////////////////////// Interface:  we want to sort the polimorphEmpleados array to asc order by salary	(Array.sort)
-		
+		/*
 		Arrays.sort(polimorphEmpleados);	// Sorts the specified array of objects into ascending order, accordingto the natural ordering of its elements.
 		//All elements in the array must implement the Comparableinterface. TO EMPLEADO FILE, THE INTERFACE IS IMPLEMENTED! no compile error.
 		
@@ -79,7 +80,16 @@ public class Use_Empleado {
 		for (Empleado e : polimorphEmpleados) {	
 			System.out.println(e.getInfo());			// polymorphism, MANUEL is define as Personal class, but inherits the class of Empleado so is allowed to be in the array of type Empleado
 		} // now they're sorted by salary!
+		*/
 		
-
+		
+		/////////////////////////////////////////////////////////////////// Creating and assigning interfaces: 
+		
+		Jefe jefeson= new Jefe("argentino");  // another class that heredates from Empleado AND implements an Interface method called getAllEmployees
+		
+		jefeson.getAllEmployes(polimorphEmpleados);  // as an interface, this method is implemented dinamically acording the class who is using it, in this case, the boss wants to know ho are the employees
+		Empleado esteban= new Empleado("Esteban");
+		esteban.getAllEmployes(polimorphEmpleados); // as an interface, this method is implemented dinamically acording to the class who is using it, in this case, the employees wanna know who are/is the bosses.
+	
 	}
 }
