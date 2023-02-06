@@ -90,6 +90,6 @@ public class Use_Empleado {
 		jefeson.getAllEmployes(polimorphEmpleados);  // as an interface, this method is implemented dinamically acording the class who is using it, in this case, the boss wants to know ho are the employees
 		Empleado esteban= new Empleado("Esteban");
 		esteban.getAllEmployes(polimorphEmpleados); // as an interface, this method is implemented dinamically acording to the class who is using it, in this case, the employees wanna know who are/is the bosses.
-	
+		
 	}
 }

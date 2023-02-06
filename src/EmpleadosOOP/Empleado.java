@@ -71,8 +71,8 @@ public class Empleado  implements Comparable<Empleado>, allEmployes{ // implemen
 	}
 
 	@Override
-	public void getAllEmployes(Empleado[] jefe) {
-		// TODO Auto-generated method stub
+	public void getAllEmployes(Empleado[] jefe) { // this method works similar to the method of Jefe but as the two class implements the same Interface, the logic of the method itself must be defined acordangly the class whom execute the method
+		
 		for(Empleado e: jefe) {
 			if(e instanceof Jefe) System.out.println("interface implemented by the EMPLOYEES, these are the boss: " + e.getInfo());
 		}	
