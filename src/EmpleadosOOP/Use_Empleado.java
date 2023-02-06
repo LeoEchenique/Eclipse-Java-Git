@@ -6,7 +6,7 @@ public class Use_Empleado {
 
 	public static void main(String[] args) {
 
-		Empleado[] empleados = { new Empleado("leo", 1/0, 18, 02, 2023), new Empleado("juan", 97000, 20, 04, 2021),
+		Empleado[] empleados = { new Empleado("leo", 10, 18, 02, 2023), new Empleado("juan", 97000, 20, 04, 2021),
 				new Empleado("mario", 165000, 1, 05, 2020) };
 		/*
 		 * for (Empleado e : empleados) {
@@ -46,5 +46,19 @@ public class Use_Empleado {
 		// System.out.println(manuel.getPersonal() + " " + manuel.aumentarSueldo(50));
 		// // aumentarSueldo() has been overrided from the child class
 		// System.out.println(manuel.aumentarSueldo(20));
+		
+		/*
+		 *  in the for iteration we cannot exec getPersonal method because correspond to the class personal
+		 *  in the array polimorphEmpleados we cannot call getPersonal because it's of a type Empleado
+		 *  
+		 *  how can i initialize the getPersonal method for manuel? since he's a Personal class, although extended from Empleado
+		 *  
+		 *  casting to Personal in a new assignment of personal type:
+		 */
+		
+		Personal empleadoPersonal= (Personal) polimorphEmpleados[3];  // casting this instance as a personal and not as Empleado
+		System.out.println("\n" + empleadoPersonal.getPersonal()); // calls class methods
+		System.out.println("\n" + empleadoPersonal.getInfo());     // calls extended class methods (Empleado methods)
+	
 	}
 }
