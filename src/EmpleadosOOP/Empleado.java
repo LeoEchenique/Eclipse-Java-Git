@@ -2,7 +2,7 @@ package EmpleadosOOP;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Empleado {
+public class Empleado  implements Comparable { // implementing Comparable means that we need to override his methods to perform dynamic task based on this type of object
 
 	private final String nombre; // final === const in JS. this keyword makes impossible to any setter to change the value once the class is instanciated.
 	private int sueldo;
@@ -54,5 +54,16 @@ public class Empleado {
 		sueldo += aumento;
 
 		return "New salary: " + sueldo;
+	}
+
+	@Override
+	public int compareTo(Object empleado) { // override the interface's method. an instance id the class who implemnt this is the parameter  // this will compare elemtns of an array
+		
+		Empleado otroEmpleado= (Empleado) empleado;  // we need to cast the "unknown" generic Object parameter into a Empleado type of object
+		
+		if(this.sueldo > otroEmpleado.sueldo ) return 1;	// start the comparision
+		if(this.sueldo < otroEmpleado.sueldo ) return -1;
+		return 0;
+		
 	}
 }

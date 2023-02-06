@@ -31,4 +31,6 @@ public class Personal extends Empleado{ // Herencia, hereda las props de Emplead
 
 		return "Nuevo sueldo, recibió un regalo! " + ( sueldo + giveMoney  );  
 	}
+
+	
 }
