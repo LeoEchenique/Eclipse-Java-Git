@@ -14,7 +14,7 @@ public class Temporizador {
 		Timer miTemp= new Timer(3000, listener);
 		miTemp.start();  // read start method description, it just starts the timer
 		JOptionPane.showConfirmDialog(null, "Aceptar para dejar de ejecutar");
-			
+		System.exit(0);
 	}
 
 }
