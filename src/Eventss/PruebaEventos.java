@@ -25,33 +25,46 @@ class MarcoBotones extends JFrame {
 	}
 }
 
-class LaminaBotones extends JPanel implements ActionListener {
+class LaminaBotones extends JPanel  {
 
 	JButton blue = new JButton("blue");
 	JButton red = new JButton("red");
 	JButton yellow = new JButton("yellow");
 
 	public LaminaBotones() {
+		
 		add(blue);
 		add(yellow);
 		add(red);
-		blue.addActionListener(this);
-		red.addActionListener(this);
-		yellow.addActionListener(this);
+		
+		BackGround rojo= new BackGround(Color.red);
+		BackGround amarillo= new BackGround(Color.yellow);
+		BackGround azul= new BackGround(Color.blue);
+		
+		blue.addActionListener(azul);
+		red.addActionListener(rojo);
+		yellow.addActionListener(amarillo);
 		// addEventListener("click", ... ) in js
 		// blue is the source of the action, the element that triggers the event
 		// this is the
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
 
-		JButton incomingEvent = (JButton) e.getSource();
-		String eventValue = incomingEvent.getText();
+	private class BackGround implements ActionListener {
+
+		private Color color;
+
+		public BackGround(Color c) {
+			color= c;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			setBackground(color);
 		
-		if("red".equals(eventValue)) setBackground(Color.red);
-		if("blue".equals(eventValue)) setBackground(Color.blue);
-		if("yellow".equals(eventValue)) setBackground(Color.yellow);
+		}
 	}
 
 }
+
