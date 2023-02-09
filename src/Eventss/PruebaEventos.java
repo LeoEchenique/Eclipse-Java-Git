@@ -20,8 +20,8 @@ class MarcoBotones extends JFrame {
 	public MarcoBotones() {
 		setTitle("botones y eventos");
 		setBounds(700, 300, 500, 300);
-		LaminaBotones miLamina = new LaminaBotones();
-		add(miLamina);
+		//LaminaBotones miLamina = new LaminaBotones();
+		add(new LaminaBotones());
 	}
 }
 
@@ -37,13 +37,15 @@ class LaminaBotones extends JPanel  {
 		add(yellow);
 		add(red);
 		
+		/*
 		BackGround rojo= new BackGround(Color.red);
-		BackGround amarillo= new BackGround(Color.yellow);
+		BackGround amarillo= new BackGround(Color.yellow);			// we can put the creation of the instance inside the addActionListener, because BackGround implements the actionPerformed method needed by the addActionListener
 		BackGround azul= new BackGround(Color.blue);
+		*/
+		blue.addActionListener(new BackGround(Color.blue));
+		red.addActionListener(new BackGround(Color.red));
+		yellow.addActionListener( new BackGround(Color.yellow));
 		
-		blue.addActionListener(azul);
-		red.addActionListener(rojo);
-		yellow.addActionListener(amarillo);
 		// addEventListener("click", ... ) in js
 		// blue is the source of the action, the element that triggers the event
 		// this is the
