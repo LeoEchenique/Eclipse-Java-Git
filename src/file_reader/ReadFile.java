@@ -1,8 +1,7 @@
 package file_reader;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -27,6 +26,18 @@ public class ReadFile {
 		} catch (IOException e) {
 			System.out.println("error");
 		}
+		
+	}
+	
+	public byte[] readImageFile(String path) {
+		byte[] arrayByte = null;
+		try(FileInputStream newImg = new FileInputStream(path)){
+			arrayByte= newImg.readAllBytes(); // reads all bytes for a source
+			return arrayByte;
+		} catch(IOException e) {
+			System.out.print("Error while pulling path");	
+		}
+		return arrayByte;
 	}
 
 }
