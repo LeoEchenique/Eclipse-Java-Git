@@ -104,9 +104,8 @@ class LaminaPelota extends JPanel {
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
-
+		
 		for (Pelota b : pelotas) {
-
 			g2.fill(b.getShape());
 		}
 
@@ -150,6 +149,17 @@ class MarcoRebote extends JFrame {
 			}
 
 		});
+		
+		ponerBoton(laminaBotones, "Detener", new ActionListener() {
+
+			public void actionPerformed(ActionEvent evento) {
+
+				detener();
+
+			}
+
+		});
+
 
 		add(laminaBotones, BorderLayout.SOUTH);
 	}
@@ -180,7 +190,7 @@ class MarcoRebote extends JFrame {
 
 		@Override
 		public void run() { // the funcionality of a given method in order to work on multi-Thread
-			for (int i = 1; i <= 3000; i++) {
+			/* for (int i = 1; i <= 3000; i++) {
 
 				pelota.mueve_pelota(component.getBounds());
 
@@ -192,6 +202,11 @@ class MarcoRebote extends JFrame {
 					e.printStackTrace();
 				} 
 					
+			} */
+			while(!Thread.interrupted()) {			// now threwad without sleep method can be interrupted
+				pelota.mueve_pelota(component.getBounds());
+				component.paint(component.getGraphics());
+ 
 			}
 
 		}
@@ -209,10 +224,17 @@ class MarcoRebote extends JFrame {
 		
 		Runnable run= new PelotaThread(pelota, lamina);
 		
-		Thread newThread= new Thread(run);
+		// Thread newThread= new Thread(run);  // bad, with new method detener() we need to access this variable so we need to declared in the class and not inside the method
 		
+		newThread = new Thread(run);
 		newThread.start();
 
+	}
+	
+	public void detener() {
+		newThread.interrupt();  // ---> InterruptedException: sleep interrupted error  -> doesnt stop the thread
+		// when we interrupt the thread the LAST thread gets stopped. But why not the first one for example? 
+		// Because in every new thread we generate a new instance of Thread but with the same name. to the THIS makes reference to the last one created
 	}
 
 	// A�ade pelota y la bota 1000 veces
@@ -245,5 +267,5 @@ class MarcoRebote extends JFrame {
 	}
 */
 	private LaminaPelota lamina;
-
+	private Thread newThread;
 }
