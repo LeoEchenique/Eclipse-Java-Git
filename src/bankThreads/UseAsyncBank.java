@@ -33,9 +33,10 @@ public class UseAsyncBank {
 	
 	static int calls=0;
 	public static void main(String[] args) {
-
+		
+		Bank theBank= new Bank();
 		for (int i = 0; i < 100; i++) {
-			runTransfers running = new runTransfers(new Bank(), i, 2000);
+			runTransfers running = new runTransfers(theBank, i, 2000);			// error in the past was caused because in each iteration the for loop was adding a new instance of bank 
 			Thread t = new Thread(running);
 			t.start();
 		}
@@ -53,20 +54,21 @@ class Bank {
 		for (int i = 0; i < cuentas.length; i++) {
 			cuentas[i] = 2000;
 		}
-		canMakeTransfer= avoidColide.newCondition(); // Before waiting on the condition the lock must be held by thecurrent thread.A call to Condition.await() will atomically release the lockbefore waiting and re-acquire the lock before the wait returns. 
+	//	canMakeTransfer= avoidColide.newCondition(); // Before waiting on the condition the lock must be held by thecurrent thread.A call to Condition.await() will atomically release the lockbefore waiting and re-acquire the lock before the wait returns. 
 		
 		
 	}
 
-	public /*synchronized*/ void transferMoney(int origin, int destiny, double amount) throws InterruptedException {  // anything that executes the method needs to capture the error that throws this method
+	public synchronized void transferMoney(int origin, int destiny, double amount) throws InterruptedException {  // anything that executes the method needs to capture the error that throws this method
 
-		avoidColide.lock(); // ---> now the attribute of the class will lock (in this case) ALL the method,
+	//	avoidColide.lock(); // ---> now the attribute of the class will lock (in this case) ALL the method,
 							// forcing to be executed by one thread at the time.
 
 		try {
 			while (cuentas[origin] < amount) { 		// before was an if that only break the exection, now is a while, so if X account cannot make a transfer, that thread its gonna AWAIT() untill notify to resume and ask again base on a new change
-				System.out.println("NO MONEY, SLEEP MODE UNTILL YOU HAVE SOMETHING" + Thread.currentThread().getName() + "  " + origin);
-				canMakeTransfer.await();
+			//	System.out.println("NO MONEY, SLEEP MODE UNTILL YOU HAVE SOMETHING" + Thread.currentThread().getName() + "  " + origin +   "  " + amount);
+				wait();
+			//	canMakeTransfer.await();
 			}
 				
 
@@ -77,12 +79,14 @@ class Bank {
 			cuentas[destiny] += amount;
 			System.out.printf(" Total bank amount: %10.2f%n ",  getAllMoney());
 			
-			canMakeTransfer.signalAll(); // If any threads are waiting on this condition then they are all woken up. Each thread must re-acquire the lock before it can return from await. 
+			notifyAll();
+			
+		//	canMakeTransfer.signalAll(); // If any threads are waiting on this condition then they are all woken up. Each thread must re-acquire the lock before it can return from await. 
 			
 		} // with no catch because there's now error tb handled over here..
 		finally {// finally, when things get done, unlock the method to allow another thread to
 					// execute this block of code
-			avoidColide.unlock();   // REPLACED BY "synchronized" KEYBOARD
+		//	avoidColide.unlock();   // REPLACED BY "synchronized" KEYBOARD
 		}
 
 	}
@@ -96,9 +100,9 @@ class Bank {
 
 	}
 
-	private Lock avoidColide = new ReentrantLock(); // a new attribute of the class Bank
+	// private Lock avoidColide = new ReentrantLock(); // a new attribute of the class Bank
 	
-	private Condition canMakeTransfer; // condition to await or resume the thread in order to make a requested transfer as soon the account has the money
+   //	private Condition canMakeTransfer; // condition to await or resume the thread in order to make a requested transfer as soon the account has the money
 }
 
 class runTransfers implements Runnable {
@@ -125,8 +129,7 @@ class runTransfers implements Runnable {
 				double amountTrasnfer = maxMoney * Math.random();
 				bank.transferMoney(moneyFrom, toAccount, amountTrasnfer);
 
-				Thread.sleep(500);
-
+				Thread.sleep((int) (Math.random() * 10 ));
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
